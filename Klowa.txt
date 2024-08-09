@@ -1,24 +1,3 @@
-local whitelist_table = loadstring(game:HttpGet("https://pastebin.com/raw/P7v2Teqk"))()
-local hw = tostring(game:GetService("RbxAnalyticsService"):GetClientId())
-
-local function Send_Notify(t : string ,m : string,time : number,icon : string)
-    game.StarterGui:SetCore("SendNotification", {
-        Title = t;  
-        Text = m; 
-        Duration = time; 
-        Icon = icon;
-    })
-end
-
--- //Гуффи ах вайт лист система\\
-
-if not table.find(whitelist_table,hw) then 
-    Send_Notify("Whitelist System","You not Whitelisted, send this Notification to q3v3(Discord)",12)
-    return
-else
-    Send_Notify("Whitelist System","You Whitelisted, Loading...",5, "rbxthumb://type=Asset&id=15155200076&w=150&h=150")
-end 
-
 local Cloth_Table = {
     ["Epic"] = {
         "13118563705", "13117322111", "12849806391", "13214910361", "13121694238", 
