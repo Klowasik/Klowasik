@@ -104,39 +104,26 @@ end
 
 
 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Library = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)() -- Pepsi's UI Library
+local Window = OrionLib:MakeWindow({Name = "Casual metro", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
---// Frame
-
-local MainFrame = Library:CreateWindow({
-	Name = "Casual Metro",
-	Themeable = {
-		Image = "7059346386",
-		Info = "Made by (Lerazz)\nPowered by Pepsi's UI Library",
-		Credit = false
-	},
-	Background = "",
-	Theme = [[{"__Designer.Colors.section":"ADC7FF","__Designer.Colors.topGradient":"1B242F","__Designer.Settings.ShowHideKey":"Enum.KeyCode.RightShift","__Designer.Colors.otherElementText":"54637D","__Designer.Colors.hoveredOptionBottom":"38667D","__Designer.Background.ImageAssetID":"","__Designer.Colors.unhoveredOptionTop":"407495","__Designer.Colors.innerBorder":"2C4168","__Designer.Colors.unselectedOption":"4E6EA0","__Designer.Background.UseBackgroundImage":true,"__Designer.Files.WorkspaceFile":"Aimbot V2","__Designer.Colors.main":"23A0FF","__Designer.Colors.outerBorder":"162943","__Designer.Background.ImageColor":"FFFFFF","__Designer.Colors.tabText":"C9DFF1","__Designer.Colors.elementBorder":"111D26","__Designer.Colors.sectionBackground":"0E141C","__Designer.Colors.selectedOption":"558AC2","__Designer.Colors.background":"11182A","__Designer.Colors.bottomGradient":"202B42","__Designer.Background.ImageTransparency":95,"__Designer.Colors.hoveredOptionTop":"4885A0","__Designer.Colors.elementText":"7692B8","__Designer.Colors.unhoveredOptionBottom":"5471C4"}]]
+local Tab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
 })
 
-
-local GeneralTab = MainFrame:CreateTab({
-	Name = "General"
-})
-local VisualSection = GeneralTab:CreateSection({
-	Name = "Visual"
+local Section = Tab:AddSection({
+	Name = "Section"
 })
 
-local InfoSection = GeneralTab:CreateSection({
-	Name = "Info",
-    Side = "Right"
-})
-
-
-VisualSection:AddToggle({Name = "Esp / Enable Esp",Flag = "2",
+Tab:AddToggle({
+	Name = "Esp",
+	Default = false,
 	Callback = function(value)
 		if value then 
+            print(value)
 			_G.Esp = true 
             while _G.Esp do
                 Update_Esp()
@@ -148,9 +135,11 @@ VisualSection:AddToggle({Name = "Esp / Enable Esp",Flag = "2",
 	end    
 })
 
-VisualSection:AddToggle({Name = "Auto-Grab",Flag = "7",
+Tab:AddToggle({
+	Name = "Auto-Grab",
+	Default = false,
 	Callback = function(value)
-		if value then 
+        if value then 
 			_G.Auto_Grab = true 
 		else
 			_G.Auto_Grab = false
@@ -159,12 +148,14 @@ VisualSection:AddToggle({Name = "Auto-Grab",Flag = "7",
 })
 
 
-VisualSection:AddLabel({
-	Text = "-----Esp Whitelist-----"
-})
+Tab:AddLabel("///////////////////////////////////")
 
 
-VisualSection:AddToggle({Name = "Epic",Flag = "3",
+--// esp white-list \\
+
+Tab:AddToggle({
+	Name = "Epic",
+	Default = false,
 	Callback = function(value)
 		if value then 
             Toggle_Table["Epic"] = true
@@ -174,7 +165,9 @@ VisualSection:AddToggle({Name = "Epic",Flag = "3",
 	end    
 })
 
-VisualSection:AddToggle({Name = "Mythic",Flag = "4",
+Tab:AddToggle({
+	Name = "Mythic",
+	Default = false,
 	Callback = function(value)
 		if value then 
             Toggle_Table["Mythic"] = true
@@ -184,7 +177,9 @@ VisualSection:AddToggle({Name = "Mythic",Flag = "4",
 	end    
 })
 
-VisualSection:AddToggle({Name = "Legendary",Flag = "5",
+Tab:AddToggle({
+	Name = "Legendary",
+	Default = false,
 	Callback = function(value)
 		if value then 
             Toggle_Table["Legendary"] = true
@@ -194,7 +189,9 @@ VisualSection:AddToggle({Name = "Legendary",Flag = "5",
 	end    
 })
 
-VisualSection:AddToggle({Name = "Ultimate",Flag = "6",
+Tab:AddToggle({
+	Name = "Ultimate",
+	Default = false,
 	Callback = function(value)
 		if value then 
             Toggle_Table["Ultimate"] = true
@@ -203,21 +200,3 @@ VisualSection:AddToggle({Name = "Ultimate",Flag = "6",
 		end 
 	end    
 })
-
-
-
-
----
-
-InfoSection:AddLabel({
-	Text = "[NEW UDPATE 22.07.24]"
-})
-
-
-InfoSection:AddLabel({
-	Text = "[-]:Exploits(Fixed)"
-})
-
-
-
-
